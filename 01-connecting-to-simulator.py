@@ -5,9 +5,7 @@
 # This software contains code licensed as described in LICENSE.
 #
 
-import os
-from lg.config import config
-import lgsvl
+from config import config
 
 # Connects to the simulator instance at the ip defined by SIMULATOR_HOST, default is localhost or 127.0.0.1
 sim = config.Simulator()
