@@ -13,6 +13,12 @@ class Config():
         sim = lgsvl.Simulator(os.environ.get(self.simulator, self.ip), self.port)
         return sim
 
+    def LoadOrResetScene(self, sim, sceneName):
+        if sim.current_scene == sceneName:
+            sim.reset()
+        else:
+            sim.load(sceneName)
+
 # uncomment for testing
 # c = Config()
 # sim = c.Simulator()
