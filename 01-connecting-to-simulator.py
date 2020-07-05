@@ -6,11 +6,13 @@
 # This software contains code licensed as described in LICENSE.
 #
 
-import os
-import lgsvl
+import simulation.config as config
 
 # Connects to the simulator instance at the ip defined by SIMULATOR_HOST, default is localhost or 127.0.0.1
-sim = lgsvl.Simulator(os.environ.get("SIMULATOR_HOST", "127.0.0.1"), 8181)
+cf = config.Config()
+sim = cf.Simulator()
+
+# sim = lgsvl.Simulator(os.environ.get("SIMULATOR_HOST", "127.0.0.1"), 8181)
 
 print("Version =", sim.version)
 print("Current Time =", sim.current_time)
