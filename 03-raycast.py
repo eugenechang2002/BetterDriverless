@@ -35,9 +35,7 @@ p.y += 1
 # 12 - Obstacle
 
 # Included layers can be hit by the rays. Otherwise the ray will go through the layer
-layer_mask = 0
-for bit in [0, 10, 11, 12]: # do not put 9 here, to not hit EGO vehicle itself
-  layer_mask |= 1 << bit
+layer_mask = cf.Raycast_Layer()
 
 # raycast returns None if the ray doesn't collide with anything
 # hit also has the point property which is the Unity position vector of where the ray collided with something

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+#
+# Copyright (c) 2019 LG Electronics, Inc.
+#
+# This software contains code licensed as described in LICENSE.
+#
+
+
 import simulation.config as config
 import lgsvl
 import random
@@ -34,34 +42,4 @@ sensors = a.get_sensors()
 for s in sensors:
   print(type(s), s.enabled)
 
-# Get a list of controllable objects
-controllables = sim.get_controllables("signal")
-# print("\n# List of controllable objects in {} scene:".format("BorregasAve"))
-# for c in controllables:
-#   print(c)
-
-signal = sim.get_controllable(lgsvl.Vector(19, 5, 21), "signal")
-print("\n# Signal of interest:")
-print(signal)
-
-# Get current controllable states
-print("\n# Current control policy:")
-print(signal.control_policy)
-
-# Create a new control policy
-control_policy = "trigger=5;green=59;yellow=2;red=1;loop"
-
-# Control this traffic light with a new control policy
-signal.control(control_policy)
-
-print("\n# Updated control policy:")
-print(signal.control_policy)
-
 sim.run()
-
-print("\n# Updated control policy:")
-print(signal.control_policy)
-
-# Get current state of signal
-print("\n# Current signal state before simulation:")
-print(signal.current_state)

@@ -19,6 +19,20 @@ class Config():
         else:
             sim.load(sceneName)
 
+    def Raycast_Layer(self, layers=[0,10,11,12]):
+        # useful bits in layer mask
+        # 0 - Default (road & ground)
+        # 9 - EGO vehicles
+        # 10 - NPC vehicles
+        # 11 - Pedestrian
+        # 12 - Obstacle
+
+        # Included layers can be hit by the rays. Otherwise the ray will go through the layer
+        layer_mask = 0
+        for bit in layers: # do not put 9 here, to not hit EGO vehicle itself
+            layer_mask |= 1 << bit
+        return layer_mask
+
 # uncomment for testing
 # c = Config()
 # sim = c.Simulator()
