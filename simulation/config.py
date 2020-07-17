@@ -34,12 +34,17 @@ class Config():
         return layer_mask
 
     def All_Green_Light(self, sim, policy="trigger=50;green=60;yellow=0;red=0;loop"):
+        '''Set all the traffic light to green forever.
 
-        # trigger=50 - Wait until an ego vehicle approaches this controllable object within 50 meters
-        # green=1 - Change current state to green and wait for 1 second
-        # yellow=1.5 - Change current state to yellow and wait for 1.5 second
-        # red=2 - Change current state to red and wait for 2 second
-        # loop - Loop over this control policy from the beginning
+        User can also change the control policy:
+
+        trigger=50 - Wait until an ego vehicle approaches this controllable object within 50 meters
+        green=1 - Change current state to green and wait for 1 second
+        yellow=1.5 - Change current state to yellow and wait for 1.5 second
+        red=2 - Change current state to red and wait for 2 second
+        loop - Loop over this control policy from the beginning
+        '''
+        
         
         controllables = sim.get_controllables("signal")
         for c in controllables:
