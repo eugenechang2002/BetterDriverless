@@ -33,6 +33,18 @@ class Config():
             layer_mask |= 1 << bit
         return layer_mask
 
+    def All_Green_Light(self, sim, policy="trigger=50;green=60;yellow=0;red=0;loop"):
+
+        # trigger=50 - Wait until an ego vehicle approaches this controllable object within 50 meters
+        # green=1 - Change current state to green and wait for 1 second
+        # yellow=1.5 - Change current state to yellow and wait for 1.5 second
+        # red=2 - Change current state to red and wait for 2 second
+        # loop - Loop over this control policy from the beginning
+        
+        controllables = sim.get_controllables("signal")
+        for c in controllables:
+            c.control(policy)
+
 # uncomment for testing
 # c = Config()
 # sim = c.Simulator()
