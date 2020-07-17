@@ -12,8 +12,6 @@ import simulation.config as config
 cf = config.Config()
 sim = cf.Simulator()
 
-# sim = lgsvl.Simulator(os.environ.get("SIMULATOR_HOST", "127.0.0.1"), 8181)
-
 print("Version =", sim.version)
 print("Current Time =", sim.current_time)
 print("Current Frame =", sim.current_frame)

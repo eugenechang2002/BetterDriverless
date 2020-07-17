@@ -1,0 +1,11 @@
+{
+    "weather": {
+        "rain": 1,      
+        "fog": 1,       
+        "wetness": 1    
+    },
+    "time": {
+        "time_of_day": 0,   
+        "fixed": true
+    }
+}
