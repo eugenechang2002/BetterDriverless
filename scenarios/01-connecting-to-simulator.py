@@ -6,7 +6,7 @@
 # This software contains code licensed as described in LICENSE.
 #
 
-import simulation.config as config
+from simulation.config import config
 
 # Connects to the simulator instance at the ip defined by SIMULATOR_HOST, default is localhost or 127.0.0.1
 cf = config.Config()
