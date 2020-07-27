@@ -30,7 +30,7 @@ parkingSpot = [150, 10]  #the forward, right position for parking spot
 npcSpot = [130, 0]  #the forward, right position for npcSpot spot
 npcSpeed = 4    #npcSpeed in terms of forward
 egoSpeed = 2
-time_of_day = 20.00
+time_of_day = 24.00
 
 #npc
 state = lgsvl.AgentState()
@@ -50,6 +50,8 @@ ego = sim.add_agent("Lincoln2017MKZ (Apollo 5.0)", lgsvl.AgentType.EGO, state)
 #set time of day
 sim.set_time_of_day(time_of_day)
 
+#set weather of day
+sim.weather = lgsvl.WeatherState(rain=0.5, fog=0.0, wetness=0.5)
 
 vehicles = {
   ego: "EGO",

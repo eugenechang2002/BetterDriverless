@@ -23,6 +23,11 @@ ry = spawns[0].rotation.y
 forward = lgsvl.utils.transform_to_forward(spawns[0])
 right = lgsvl.utils.transform_to_right(spawns[0])
 
+#this scene simulate rainy day in morning
+#variable
+time_of_day = 24.00
+weatherInfo = [1.0, 0.0, 0.5]   #[rain, fog, wetness]
+
 # ego vehicle
 state = lgsvl.AgentState()
 state.transform = spawns[0]
@@ -34,9 +39,16 @@ ego = sim.add_agent("Lincoln2017MKZ (Apollo 5.0)", lgsvl.AgentType.EGO, state)
 state = lgsvl.AgentState()
 state.transform.position = spawns[0].position + 40.0 * forward
 state.transform.rotation.y = spawns[0].rotation.y + 270.0
-state.transform.rotation.z = spawns[0].rotation.z + 90.0
-#state.transform.rotation.x = spawns[0].rotation.x + 90.0
+#state.transform.rotation.z = spawns[0].rotation.z + 90.0
+state.transform.rotation.x = spawns[0].rotation.x + 90.0
 bus = sim.add_agent("SchoolBus", lgsvl.AgentType.NPC, state)
+
+#set time of day
+sim.set_time_of_day(time_of_day)
+
+#set weather of day  ## rainy day
+sim.weather = lgsvl.WeatherState(rain=weatherInfo[0], fog=weatherInfo[1], wetness=weatherInfo[2])
+
 
 vehicles = {
   ego: "EGO",
