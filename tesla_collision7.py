@@ -23,9 +23,9 @@ ry = spawns[0].rotation.y
 forward = lgsvl.utils.transform_to_forward(spawns[0])
 right = lgsvl.utils.transform_to_right(spawns[0])
 
-#this scene simulate rainy day in morning
+#this scene simulate normal day in night
 #variable
-time_of_day = 12.00
+time_of_day = 24.00
 weatherInfo = [0.0, 0.0, 0.0]   #[rain, fog, wetness]
 
 # ego vehicle
