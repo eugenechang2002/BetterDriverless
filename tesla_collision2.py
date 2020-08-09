@@ -27,6 +27,10 @@ weather = [[0.0, 0.0, 0.0], [1.0, 0.0, 1.0], [0.0, 1.0, 0.0]]   #[rain, fog, wet
 # Ego Car Variable
 ego_speed = 6
 
+def on_collision(agent1, agent2, contact):
+  name1 = vehicles[agent1]
+  print("{} collided with at {}".format(name1, contact))
+
 for time in time_of_day:
   for weatherInfo in weather:
 
@@ -56,10 +60,6 @@ for time in time_of_day:
       ego: "EGO",
       bus: "SchoolBus",
     }
-
-    def on_collision(agent1, agent2, contact):
-      name1 = vehicles[agent1]
-      print("{} collided with at {}".format(name1, contact))
 
     # The above on_collision function needs to be added to the callback list of each vehicle
     ego.on_collision(on_collision)

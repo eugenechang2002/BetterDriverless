@@ -31,6 +31,16 @@ npc_speed = 12
 forward = lgsvl.utils.transform_to_forward(spawns[0])
 right = lgsvl.utils.transform_to_right(spawns[0])
 
+# When the NPC is within 0.5m of the waypoint, this will be called
+def on_waypoint(agent, index):
+  print("waypoint {} reached".format(index))
+  print("npc vehicle stop")
+
+def on_collision(agent1, agent2, contact):
+  name1 = vehicles[agent1]
+  name2 = vehicles[agent2] if agent2 is not None else "OBSTACLE"
+  print("{} collided with {}".format(name1, name2))
+
 for time in time_of_day:
   for weatherInfo in weather:
 
@@ -59,11 +69,6 @@ for time in time_of_day:
       npc: "Sedan",
     }
 
-    def on_collision(agent1, agent2, contact):
-      name1 = vehicles[agent1]
-      name2 = vehicles[agent2] if agent2 is not None else "OBSTACLE"
-      print("{} collided with {}".format(name1, name2))
-
     a.on_collision(on_collision)
     npc.on_collision(on_collision)
 
@@ -80,11 +85,6 @@ for time in time_of_day:
     # NPC will wait for 1 second at each waypoint
     wp = lgsvl.DriveWaypoint(hit.point, npc_speed, angle, 1)
     waypoints.append(wp)
-
-    # When the NPC is within 0.5m of the waypoint, this will be called
-    def on_waypoint(agent, index):
-      print("waypoint {} reached".format(index))
-      print("npc vehicle stop")
 
     # The above function needs to be added to the list of callbacks for the NPC
     npc.on_waypoint_reached(on_waypoint)
