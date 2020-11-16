@@ -18,6 +18,7 @@ print("Bridge connected:", a.bridge_connected)
 
 # The EGO is now looking for a bridge at the specified IP and port
 a.connect_bridge("127.0.0.1", 9090)
+# a.connect_bridge("10.31.51.49", 9090)
 
 print("Waiting for connection...")
 
@@ -36,9 +37,6 @@ for s in sensors:
 
 # Get a list of controllable objects
 controllables = sim.get_controllables("signal")
-# print("\n# List of controllable objects in {} scene:".format("BorregasAve"))
-# for c in controllables:
-#   print(c)
 
 signal = sim.get_controllable(lgsvl.Vector(19, 5, 21), "signal")
 print("\n# Signal of interest:")
