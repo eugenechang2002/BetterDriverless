@@ -1,0 +1,62 @@
+{
+    "agent": {
+        "EGO": [
+            "Jaguar2015XE",
+            "Jaguar2015XE",
+            "Jaguar2015XE",
+            "Lexus2016RXHybrid",
+            "Lincoln2017MKZ"
+        ],
+        "NPC": [
+            "Sedan",
+            "SUV",
+            "Jeep",
+            "Hatchback",
+            "SchoolBus",
+            "BoxTruck"
+        ],
+        "state": {
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "rotation": 0,
+            "velocity": 0 
+        }
+    },
+    "TrafficLight": {
+        "trigger": 50, 
+        "green": 1,
+        "yellow": 1.5,
+        "red": 2,
+        "loop": true
+    },
+    "EmergencyVehicle": false,
+    "Obstacle": [
+        {"Pedestrian": {
+            "Block": true
+        }},
+        {"Car": {
+            "Block": true
+        }},
+        {"Bike": {
+            "Block": true
+        }}
+    ],
+    "Weather": {
+        "Rain": 0,
+        "Fog": 0,
+        "Wetness": 0
+    },
+    "Time": {
+        "TimeOfDay": 0,
+        "Fixed": true
+    },
+    "Sign": {},
+    "Sidewalk": {},
+    "Vegetation": {},
+    "Building": {},
+    "Road": {},
+    "Curb": {}
+}
