@@ -13,7 +13,7 @@ with open('UserInput.json') as f:
 queue = []
 queue.append({})
 
-scenarios = getAllPossibleConditions(user_json)
+scenarios = getAllPossibleConditions(queue, user_json)
 print("scenarios size:", len(scenarios))
 
 # Load config and simulator
