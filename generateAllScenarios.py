@@ -3,6 +3,7 @@ import lgsvl
 import copy
 import json
 import time
+
 from parser import getAllPossibleConditions
 from lgsvl.agent import NPCControl
 
@@ -33,6 +34,17 @@ while len(scenarios) > 0:
     if "Weather" in cur:
         sim.weather = lgsvl.WeatherState(cur["Weather"]["Rain"], cur["Weather"]["Fog"], cur["Weather"]["Wetness"])
     
+    # Weather
+    if "Time" in cur:
+        sim.set_time_of_day(cur["Time"]["TimeOfDay"])
+    
+    # TrafficLight
+    if "TrafficLight" not in cur:
+        cf.All_Green_Light(sim)
+    else:
+        pass
+        # TODO
+
     sim.run(1)
 
     # Log duration and index
