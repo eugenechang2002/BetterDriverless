@@ -1,0 +1,166 @@
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Stock Invesment Methods</legend>
+                <div class="form-group">
+                    {{ form.input_amount.label(class="form-control-label") }}
+                    {% if form.input_amount.errors %}
+                        {{ form.input_amount(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.input_amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.input_amount(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.invs_method.label(class="form-control-label") }}
+                    {% if form.invs_method.errors %}
+                        {{ form.invs_method(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.invs_method.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.invs_method(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.invs_method_opt.label(class="form-control-label") }}
+                    {% if form.invs_method_opt.errors %}
+                        {{ form.invs_method_opt(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.invs_method_opt.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.invs_method_opt(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <p>Examples: "Quality Investing", "Index Investing", "Growth Investing", "Ethical Investing", "Value Investing"</p>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
+            <P>{{ result }}</P>
+
+            {% if method1 == "Ethical Investing" or method1 == 'Growth Investing' or  method1 == "Index Investing" or method1 == "Value Investing" or method1 == "Quality Investing" %}
+            <p>Your final Protfolio based on your selected strategy is as below:</p >
+
+            <P>{{method1}}</P>
+            <ol>
+              <li>{{ companyList[0] }} =  {{portionList[0]}} %</li>
+              <li>{{ companyList[1] }} =  {{portionList[1]}} %</li>
+              <li>{{ companyList[2] }} =  {{portionList[2]}} %</li>
+            </ol>
+
+            {% if method2 == "Ethical Investing" or method2 == 'Growth Investing' or  method2 == "Index Investing" or method2 == "Value Investing" or method2 == "Quality Investing"%}
+            <P>{{method2}}</P>
+            <ol>
+              <li>{{ companyList2[0] }} =  {{portionList2[0]}} %</li>
+              <li>{{ companyList2[1] }} =  {{portionList2[1]}} %</li>
+              <li>{{ companyList2[2] }} =  {{portionList2[2]}} %</li>
+            </ol>
+            {% endif %}
+
+            <p>A weekly trend of the portfolio value is as below </p >
+
+            <span>
+            <ul style="list-style-type: none; display: inline-block;">
+              <li>{{valueList[0]}}</li>
+              <li>{{valueList[1]}}</li>
+              <li>{{valueList[2]}}</li>
+              <li>{{valueList[3]}}</li>
+              <li>{{valueList[4]}}</li>
+            </ul>
+
+             <ul style="list-style-type: none; display: inline-block;">
+              <li>{{valueList2[0]}}</li>
+              <li>{{valueList2[1]}}</li>
+              <li>{{valueList2[2]}}</li>
+              <li>{{valueList2[3]}}</li>
+              <li>{{valueList2[4]}}</li>
+            </ul>
+            </span>
+            {% if profit >= 0 %}
+            <p> Congratulation. You Earn Money through using our Strategy!!!! </p >
+            {% else %}
+            <p> Oh, the overall stock market is bad. You can try our other strategy. </p >
+            {% endif %}
+            <p>  You profit is: {{profit}}</p >
+
+            {% if method1 == "Ethical Investing" %}
+            <p> 
+                Your first investing strategy is like Jesse Livermore! 
+                 <img src="{{url_for('static', filename= 'Jesse_Livermore.jpg')}}" style="width:200px;height:200px;"/>
+            </p >
+            {% elif method1 == "Growth Investing" %}
+            <p> 
+                Your first investing strategy is like William Delbert Gann!
+                <img src="{{url_for('static', filename= 'William_Delbert_Gann.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method1 == "Value Investing" %}
+            <p> 
+                Your first investing strategy is like Steven Cohen!
+                <img src="{{url_for('static', filename= 'Steven_Cohen.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method1 == "Index Investing" %}
+            <p> 
+                Your first investing strategy is like Paul Tudor Jones! 
+                <img src="{{url_for('static', filename= 'Paul_Tudor_Jones.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method1 == "Quality Investing" %}
+            <p> 
+                Your first investing strategy is like Warren buffett!
+                <img src="{{url_for('static', filename= 'Warren_buffett.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% endif %}
+
+            {% if method2 == "Ethical Investing" %}
+            <p> 
+                Your second investing strategy is like Jesse Livermore! 
+                <img src="{{url_for('static', filename= 'Jesse_Livermore.jpg')}}" style="width:200px;height:200px;"/>
+            </p >
+            {% elif method2 == "Growth Investing" %}
+            <p> 
+                Your second investing strategy is like William Delbert Gann! 
+                <img src="{{url_for('static', filename= 'William_Delbert_Gann.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method2 == "Value Investing" %}
+            <p> 
+                Your second investing strategy is like Steven Cohen!
+                <img src="{{url_for('static', filename= 'Steven_Cohen.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method2 == "Index Investing" %}
+            <p> 
+                Your second investing strategy is like Paul Tudor Jones!
+                <img src="{{url_for('static', filename= 'Paul_Tudor_Jones.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% elif method2 == "Quality Investing" %}
+            <p> 
+                Your second investing strategy is like warren buffett! 
+                <img src="{{url_for('static', filename= 'Warren_buffett.jpg')}}" style="width:200px;height:200px;"/>
+            </p>
+            {% endif %}
+
+          <p>
+            <meta Http-Equiv="Cache" content="no-cache">
+              <img src="{{url_for('static', filename= imgNameA)}}" />
+              {% if imgNameB != "" %}
+                <img src="{{url_for('static', filename= imgNameB)}}" />
+              {% endif %}
+            <meta/>
+          </p>
+
+          {% endif %}
+
+        </form>
+    </div>
+{% endblock content %}
