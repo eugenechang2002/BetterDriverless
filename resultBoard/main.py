@@ -44,15 +44,26 @@ def calculator():
     return render_template('calculator.html', title='Calculator', form=form, proceeds=proceeds, cost=cost,
                            net_profit=net_profit, return_on_inv=return_on_inv, break_piece=break_piece)
 
-
-@app.route("/json", methods=['GET', 'POST'])
-def json():
+@app.route('/result_board')
+def result_board(some_place):
     form = JsonForm()
 
     f = open('sample.json',)
     data = JSON.load(f)
+    location = some_place
     print(data)
-    return render_template('json.html', title='JSONoutput', form=form, data = data)
+    return render_template('json.html', title='JSONoutput', form=form, data = data, location = location)
+
+
+@app.route('/result_detail/<fileName>')
+def result_detail(fileName):
+    form = JsonForm()
+    fname = fileName+".json"
+    f = open(fname,)
+    data = JSON.load(f)#TODO:need to know detailed col name
+    location = fileName
+    print(data)
+    return render_template('result_detail.html', title='result', form=form, data = data, location = location)
 
 
 @app.route("/realTimeInfo", methods=['GET', 'POST'])
