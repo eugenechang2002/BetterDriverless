@@ -1,11 +1,12 @@
 from flask import Flask, render_template, flash,url_for
-from forms import CalculateForm, realTimeInfoForm, invsForm, JsonForm
+from forms import CalculateForm, realTimeInfoForm, invsForm, ResultBoardForm
 from alpha_vantage.timeseries import TimeSeries
 import datetime
 import yfinance as yf
 import requests
 from datetime import date, timedelta
 import os
+from os import path
 import json as JSON
 import matplotlib
 import matplotlib.pyplot as plt
@@ -44,26 +45,39 @@ def calculator():
     return render_template('calculator.html', title='Calculator', form=form, proceeds=proceeds, cost=cost,
                            net_profit=net_profit, return_on_inv=return_on_inv, break_piece=break_piece)
 
-@app.route('/result_board')
-def result_board(some_place):
-    form = JsonForm()
-
-    f = open('sample.json',)
-    data = JSON.load(f)
-    location = some_place
-    print(data)
-    return render_template('json.html', title='JSONoutput', form=form, data = data, location = location)
+@app.route('/result_board', methods=['GET', 'POST'])
+def result_board():
+    form = ResultBoardForm()
+    pass_queue = []
+    fail_queue = []
+    detail_page = -1
+    for n in range(100):
+        fname = str(n) + ".json"
+        if path.exists(fname):
+            f = open(fname,)
+            data = JSON.load(f)
+            if data.get("success") == "true":
+                pass_queue.append(fname)
+            else:
+                fail_queue.append(fname)
+        else:
+            break
+    pass_rate = len(pass_queue)/(len(pass_queue) + len(fail_queue))
+    
+    return render_template('result_board.html', title='result_board', form=form, pass_rate = pass_rate, pass_queue = pass_queue, fail_queue = fail_queue, detail_page = detail_page)
 
 
 @app.route('/result_detail/<fileName>')
 def result_detail(fileName):
-    form = JsonForm()
+    form = ResultBoardForm()
     fname = fileName+".json"
     f = open(fname,)
     data = JSON.load(f)#TODO:need to know detailed col name
-    location = fileName
-    print(data)
-    return render_template('result_detail.html', title='result', form=form, data = data, location = location)
+    weather = data.get("weather")
+    daytime = data.get("daytime")
+    carType = data.get("carType")
+
+    return render_template('result_detail.html', title='result', form=form, weather = weather, daytime = daytime, carType = carType)
 
 
 @app.route("/realTimeInfo", methods=['GET', 'POST'])

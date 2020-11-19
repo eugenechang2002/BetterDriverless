@@ -2,8 +2,28 @@
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            <p>The data is  {{ data }}</p>
-            <p>The location is  {{ location }}</p>
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Stock Calculator</legend>
+                <div class="form-group">
+                    {{ form.detail_page.label(class="form-control-label") }}
+                    {% if form.detail_page.errors %}
+                        {{ form.detail_page(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.detail_page.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.detail_page(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+            <p>The pass queue is  {{ pass_queue }}</p>
+            <p>The fail queue is  {{ fail_queue }}</p>
+            <p>The pass rate is  {{ pass_rate }}</p>
         </form>
     </div>
 {% endblock content %}
