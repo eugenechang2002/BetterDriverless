@@ -39,9 +39,6 @@
         }},
         {"Car": {
             "Block": true
-        }},
-        {"Bike": {
-            "Block": true
         }}
     ],
     "Weather": {

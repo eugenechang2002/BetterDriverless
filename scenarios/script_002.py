@@ -1,0 +1,1 @@
+print("script_002.py is working")
