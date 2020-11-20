@@ -5,9 +5,9 @@
             <p>The weather is  {{ weather }}</p>
             <p>The daytime is  {{ daytime }}</p>
             <p>The carType is  {{ carType }}</p>
-            <button onclick="window.location.href='localhost:8080/result_board';">
-                Click To Return
-            </button>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
         </form>
     </div>
 {% endblock content %}

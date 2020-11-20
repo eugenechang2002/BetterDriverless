@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash,url_for
+from flask import Flask, render_template, flash, url_for, redirect, request
 from forms import CalculateForm, realTimeInfoForm, invsForm, ResultBoardForm
 from alpha_vantage.timeseries import TimeSeries
 import datetime
@@ -50,8 +50,8 @@ def result_board():
     form = ResultBoardForm()
     pass_queue = []
     fail_queue = []
-    detail_page = -1
-    for n in range(100):
+    detail_page = 0
+    for n in range(1,100):
         fname = str(n) + ".json"
         if path.exists(fname):
             f = open(fname,)
@@ -62,9 +62,13 @@ def result_board():
                 fail_queue.append(fname)
         else:
             break
+    if form.validate_on_submit():
+        detail_page = form.detail_page.data
+        return redirect(url_for('result_detail', fileName = detail_page))
     pass_rate = len(pass_queue)/(len(pass_queue) + len(fail_queue))
+    result_detail_url = "localhost:8080/result_detail/" + str(detail_page)
     
-    return render_template('result_board.html', title='result_board', form=form, pass_rate = pass_rate, pass_queue = pass_queue, fail_queue = fail_queue, detail_page = detail_page)
+    return render_template('result_board.html', title='result_board', form=form, pass_rate = pass_rate, pass_queue = pass_queue, fail_queue = fail_queue, detail_page = detail_page, result_detail_url = result_detail_url)
 
 
 @app.route('/result_detail/<fileName>')
@@ -77,6 +81,9 @@ def result_detail(fileName):
     daytime = data.get("daytime")
     carType = data.get("carType")
 
+    if form.validate_on_submit():
+            detail_page = form.detail_page.data
+            return redirect(url_for('result_detail', fileName = detail_page))
     return render_template('result_detail.html', title='result', form=form, weather = weather, daytime = daytime, carType = carType)
 
 
