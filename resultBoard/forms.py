@@ -13,19 +13,9 @@ class CalculateForm(FlaskForm):
     tax = FloatField('Tax', validators=[DataRequired()])
     submit = SubmitField('Calculate')
 
-class JsonForm(FlaskForm):
-    symbol = StringField('Stock Symbol',
-                            validators=[DataRequired()])
-    allotment = IntegerField('Allotment', validators=[DataRequired()])
-    final_share_price = IntegerField('Final Share Price', validators=[DataRequired()])
-    sell_commission = IntegerField('Sell Commission', validators=[DataRequired()])
-    initial_share_price = IntegerField('Initial Share Price', validators=[DataRequired()])
-    buy_commission = IntegerField('Buy Commission', validators=[DataRequired()])
-    tax = FloatField('Tax', validators=[DataRequired()])
-    submit = SubmitField('Calculate')
 
 class ResultBoardForm(FlaskForm):
-    detail_page = IntegerField('Jump to Page', validators=[DataRequired()])
+    detail_page = IntegerField('Jump to Case#', validators=[DataRequired()])
     submit = SubmitField('Go!')
 
 class ResultDetailForm(FlaskForm):
