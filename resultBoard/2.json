@@ -1,0 +1,48 @@
+{
+    
+    "Script_ID": 1,
+    "Scenario_ID": 1,
+    "Success": "true",
+    "Car_Type": "Lincoln2017MKZ",
+    "Map": "Boragas Ave",
+    "Total_Time": 10,
+    "Reach_Destination": true,
+    "Connection_Error": false,
+    "Location_Start": [
+        -50.3400077819824,
+        -1.03600001335144,
+        -9.03001022338867
+    ],
+    "Location_End": [
+        -11.671243475592078,
+        -1.03600001335144,
+        -50.03600001335144
+    ],
+    "Collision": false,
+    "Weather": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "Time_Of_Day": 6,
+    "Velocity": 6,
+    "Module_Status": {
+        "Camera": false,
+        "Canbus": false,
+        "Control": true,
+        "GPS": false,
+        "Guardian": false,
+        "Localization": false,
+        "Perception": false,
+        "Planning": true,
+        "Prediction": true,
+        "Radar": false,
+        "Recorder": false,
+        "Routing": true,
+        "Storytelling": false,
+        "Third Party Perception": false,
+        "Traffic Light": true,
+        "Transform": false,
+        "Velodyne": false
+    }
+}
