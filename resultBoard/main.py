@@ -87,13 +87,17 @@ def result_detail(fileName):
     Total_Time = data.get("Total_Time")
     Reach_Destination = data.get("Reach_Destination")
     Connection_Error = data.get("Connection_Error")
-    Location_Start = data.get("Location_Start")
-    Location_End = data.get("Location_End")
+    Total_Distance = data.get("Total_Distance")
     Collision = data.get("Collision")
 
+    #weather
     Weather = data.get("Weather")
+    Rain = Weather[0]
+    Fog = Weather[1]
+    Wetness = Weather[2]
+
     Time_Of_Day = data.get("Time_Of_Day")
-    Velocity = data.get("Velocity")
+    Velocity = float(data.get("Velocity"))*60*60/1000
 
     #module status
     Module_Status = data.get("Module_Status")
@@ -114,13 +118,13 @@ def result_detail(fileName):
     Velodyne = Module_Status.get("Velodyne")
     
 
-    if form.validate_on_submit():
-            return redirect(url_for('result_detail'))
+    # if form.validate_on_submit():
+    #         return redirect(url_for('result_detail'))
     return render_template('result_detail.html', title='result', 
     form=form, Script_ID = Script_ID, Scenario_ID = Scenario_ID, Success = Success, Car_Type = Car_Type, 
-    Map = Map, Total_Time = Total_Time, Reach_Destination = Reach_Destination, Connection_Error = Connection_Error, Location_Start = Location_Start,
-    Location_End = Location_End, Collision = Collision, Weather = Weather, Time_Of_Day = Time_Of_Day, Velocity = Velocity,
-    Module_Status = Module_Status, Camera = Camera, Control = Control, GPS = GPS, Guardian = Guardian,
+    Map = Map, Total_Time = Total_Time, Reach_Destination = Reach_Destination, Connection_Error = Connection_Error, Total_Distance = Total_Distance,
+     Collision = Collision, Rain = Rain, Fog = Fog, Wetness = Wetness, Time_Of_Day = Time_Of_Day, Velocity = Velocity,
+      Camera = Camera, Control = Control, GPS = GPS, Guardian = Guardian,
     Localization = Localization, Perception = Perception, Planning = Planning, Prediction = Prediction, Radar = Radar,
     Recorder = Recorder, Routing = Routing, Storytelling = Storytelling, Traffic_Light = Traffic_Light, Transform = Transform,Velodyne = Velodyne)
 

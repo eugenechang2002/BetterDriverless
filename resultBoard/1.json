@@ -1,6 +1,38 @@
 {
-    "Success": "true", 
-    "weather": "sunny",
-    "daytime": "10:30",
-    "carType": "Linkon"
+    "Script_ID": 1,
+    "Scenario_ID": 1,
+    "Success": true,
+    "Car_Type": "Lincoln2017MKZ",
+    "Map": "Boragas Ave",
+    "Total_Time": 10,
+    "Reach_Destination": true,
+    "Connection_Error": false,
+    "Total_Distance": 50.0,
+    "Collision": false,
+    "Weather": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "Time_Of_Day": 6,
+    "Velocity": 6,
+    "Module_Status": {
+        "Camera": false,
+        "Canbus": false,
+        "Control": false,
+        "GPS": false,
+        "Guardian": false,
+        "Localization": false,
+        "Perception": false,
+        "Planning": false,
+        "Prediction": false,
+        "Radar": false,
+        "Recorder": false,
+        "Routing": false,
+        "Storytelling": false,
+        "Third Party Perception": false,
+        "Traffic Light": false,
+        "Transform": false,
+        "Velodyne": false
+    }
 }
