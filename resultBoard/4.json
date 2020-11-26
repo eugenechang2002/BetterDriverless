@@ -1,6 +1,6 @@
 {
     "Script_ID": 1,
-    "Scenario_ID": 2,
+    "Scenario_ID": 4,
     "Connection_Error": false,
     "Total_Distance": 50.0,
     "Module_Status": {
@@ -30,8 +30,8 @@
     "Total_Time": 20,
     "Weather": [
         0,
-        0,
-        0.5
+        0.5,
+        0
     ],
     "Time_Of_Day": 6,
     "Velocity": 10

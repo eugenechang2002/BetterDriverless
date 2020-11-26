@@ -1,6 +1,6 @@
 {
     "Script_ID": 1,
-    "Scenario_ID": 2,
+    "Scenario_ID": 26,
     "Connection_Error": false,
     "Total_Distance": 50.0,
     "Module_Status": {
@@ -29,8 +29,8 @@
     "Map": "Boragas Ave",
     "Total_Time": 20,
     "Weather": [
-        0,
-        0,
+        1.0,
+        1.0,
         0.5
     ],
     "Time_Of_Day": 6,
