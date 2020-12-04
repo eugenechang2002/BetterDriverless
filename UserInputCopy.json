@@ -46,6 +46,11 @@
         "Fog": 0,
         "Wetness": 0
     },
+    "Time": {
+        "TimeOfDay": 0,
+        "Fixed": true
+    }
+    ,
     "Sign": {},
     "Sidewalk": {},
     "Vegetation": {},

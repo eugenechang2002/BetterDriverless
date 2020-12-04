@@ -3,15 +3,16 @@ import lgsvl
 import copy
 import json
 import time
+import numpy as np
 from lgsvl.agent import NPCControl
 
-def addWeatherCondition(secenarios, user_json, weather, difference):
+def addWeatherCondition(secenarios, user_json, weather, difference=0.5):
     if weather in user_json["Weather"]:
         size = len(secenarios)
         for _ in range(size):
             cur = secenarios.pop(0)
 
-            for v in [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]:
+            for v in np.arange(0,1.1,difference):
                 temp = copy.deepcopy(cur)
 
                 if "Weather" not in temp:
@@ -20,7 +21,7 @@ def addWeatherCondition(secenarios, user_json, weather, difference):
                 secenarios.append(temp)
     return secenarios
 
-def addTimeCondition(secenarios, user_json):
+def addTimeCondition(secenarios, user_json, difference=0 , timeList=[5,7,9,11,13,15,17,19,21,23]):
     time_of_day = 24
     if "Time" in user_json:
         time_of_day = user_json["Time"]["TimeOfDay"]
@@ -30,13 +31,23 @@ def addTimeCondition(secenarios, user_json):
         cur = secenarios.pop(0)
 
         if time_of_day == 24:
-            for v in range(time_of_day):
-                temp = copy.deepcopy(cur)
+            if(difference!=0):
+                c = range(1,25,difference) 
+                for v in c:
+                    temp = copy.deepcopy(cur)
 
-                if "Time" not in temp:
-                    temp["Time"] = {}
-                temp["Time"]["TimeOfDay"] = v
-                secenarios.append(temp)
+                    if "Time" not in temp:
+                        temp["Time"] = {}
+                    temp["Time"]["TimeOfDay"] = v
+                    secenarios.append(temp)
+            else:
+                for v in timeList:
+                    temp = copy.deepcopy(cur)
+
+                    if "Time" not in temp:
+                        temp["Time"] = {}
+                    temp["Time"]["TimeOfDay"] = v
+                    secenarios.append(temp)
         else:
             temp = copy.deepcopy(cur)
             if "Time" not in temp:
@@ -57,7 +68,7 @@ def getAllPossibleConditions(secenarios, user_json):
     # Weather
     if "Weather" in user_json:
         for weather in user_json["Weather"]:
-            addWeatherCondition(secenarios, user_json, weather, 0.1)
+            addWeatherCondition(secenarios, user_json, weather, difference = 0.5)
     
     # Time
     addTimeCondition(secenarios, user_json)
