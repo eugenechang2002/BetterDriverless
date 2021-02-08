@@ -36,7 +36,8 @@ bus = sim.add_agent("SchoolBus", lgsvl.AgentType.NPC, state)
 
 # sedan, 10m ahead, driving forward
 state = lgsvl.AgentState()
-state.transform.position = spawns[0].position + 4.0 * right
+state.transform.position = spawns[0].position
+# state.transform.position = spawns[0].position + 4.0 * right
 state.transform.rotation = spawns[0].rotation
 sedan = sim.add_agent("Sedan", lgsvl.AgentType.NPC, state)
 # Even though the sedan is commanded to follow the lane, obstacle avoidance takes precedence and it will not drive into the bus
